@@ -1,0 +1,30 @@
+f = open('D:/Spider_and_fly.txt')
+a, b, c = map(int, f.readline().split())
+Sx, Sy, Sz = map(int, f.readline().split())
+Fx, Fy, Fz = map(int, f.readline().split())
+
+s = 0
+
+if (Sx != Fx and (Sx == a or Sx == 0) and (Fx == a or Fx == 0)):
+    a = min(abs(Sy + Fy), abs((a - Sy) + (a - Fy))) + abs(Sx - Fx)
+    h = abs(Sz - Fz)
+elif (Sy != Fy and (Sy == b or Sy == 0) and (Fy == b or Fy == 0)):
+    a = min(abs(Sx + Fx), abs((a - Sx) + (a - Fx))) + abs(Sy - Fy)
+    h = abs(Sz - Fz)
+elif Sz != Fx and (Sz == c or Sz == 0) and (Fz == c or Fz == 0) :
+    a = min(abs(Sz + Fz), abs((c - Sz) + (c - Fz))) + abs(Sy - Fy)
+    h = abs(Sx - Fx)
+elif (Sx == 0 or Sx == a) and (Fy == 0 or Fy == b) or (Fx == 0 or Fx == a) and (Sy == 0 or Sy == b):
+    a = abs(Sx - Fx) + abs(Sy - Fy)
+    h = abs(Sz - Fz)
+elif (Sy == 0 or Sy == b) and (Fz == 0 or Fz == c) or (Fy == 0 or Fy == b) and (Sz == 0 or Sz == c):
+    a = abs(Sz - Fz) + abs(Sy - Fy)
+    h = abs(Sx - Fx)
+else:
+    a = abs(Sx-Fx) + abs(Sz - Fz)
+    h = abs(Sy - Fy)
+
+s = (a ** 2 + h ** 2) ** (1 / 2)
+
+print(s)
+
